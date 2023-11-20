@@ -18,17 +18,17 @@
 To compile and execute a problem's code, you may use these commands inside the ProblemN folder (not from the src folder):
 
 ```bash
-gcc ./src/*.c -o ./bin/main -g -Wall
-chmod o+rx ./bin/main
-echo
-./bin/main [arguments]
+gcc ./src/*.c -o ./bin/main.out -g -Wall
+chmod o+rx ./bin/main.out
+clear
+./bin/main.out [arguments]
 ```
 
 ## Completion Summary
 
 | Problem | Status | Comment
 | --- | :---: | --- |
-| [Problem 1][i1] | - | |
+| [Problem 1][i1] | Done | Args `./test/test.txt` `./test/test2.txt` `./test/elQuijote.txt` `./test/test3.txt` |
 | [Problem 2][i2] | - | |
 
 [i1]: https://github.com/alonso-herreros/uni-sysarch-lab7/issues/1
