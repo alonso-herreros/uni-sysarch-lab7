@@ -12,10 +12,11 @@
 ## Statement files
 
 * [Problem statements PDF](./Instructions.pdf)
-
+* [Problem statements Markdown](./Statements.md)
 
 ## Compilation & execution
 To compile and execute a problem's code, you may use these commands inside the ProblemN folder (not from the src folder):
+
 ```bash
 gcc ./src/*.c -o ./bin/main -g -Wall
 chmod o+rx ./bin/main
@@ -27,5 +28,8 @@ echo
 
 | Problem | Status | Comment
 | --- | :---: | --- |
-| Problem 1 | - | |
-| Problem 2 | - | |
+| [Problem 1][i1] | - | |
+| [Problem 2][i2] | - | |
+
+[i1]: https://github.com/alonso-herreros/uni-sysarch-lab7/issues/1
+[i2]: https://github.com/alonso-herreros/uni-sysarch-lab7/issues/2
