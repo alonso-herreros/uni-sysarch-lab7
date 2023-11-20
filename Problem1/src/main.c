@@ -58,11 +58,7 @@ pid_t printnbytes_fork(char *filename)
 
 int main(int argc, char **argv)
 {
-    // Check min args
-    if (argc < 2) {
-        fprintf(stderr, "Wrong number of arguments: at least 1 expected, %d given\n", argc-1);
-        exit(EXIT_FAILURE);
-    }
+    // No minimum args
 
     // Fork for each argument given
     for (int i=0; i<argc-1; i++)  printnbytes_fork(argv[i+1]);
