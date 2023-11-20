@@ -51,28 +51,36 @@ int printnlines(char *filename)
     return 0;
 }
 
-// pid_t printnlines_fork(char *filename)
-// {
-//     pid_t pid = fork();
+pid_t printnlines_fork(char *filename)
+{
+    pid_t pid = fork();
 
-//     if (pid == -1) { // Error only
-//         fprintf(stderr, "Error forking.\n");
-//     }
-//     if (pid == 0) { // Child only
-//         printnlines(filename);
-//         exit(EXIT_SUCCESS);
-//     }
+    if (pid == -1) { // Error only
+        fprintf(stderr, "Error forking.\n");
+    }
+    if (pid == 0) { // Child only
+        printnlines(filename);
+        exit(EXIT_SUCCESS);
+    }
     
-//     // Parent only
-//     return pid;
-// }
+    // Parent only
+    return pid;
+}
 
 
 int main(int argc, char **argv)
 {
     // No minimum args
     for (int argi=1; argi<argc; argi++) {
-        printnlines(argv[argi]);
+        printnlines_fork(argv[argi]);
+        // printf("Forked %d\n", printnlines_fork(argv[argi])); // LOGGING
+    }
+
+    for (int i=0; i<argc-1; i++) {
+        int status;
+        pid_t pid = wait(&status);
+        if (status != EXIT_SUCCESS)  fprintf(stderr, "Process %d failed with status %d\n", pid, status);
+        // else printf("Process %d succeeded\n", pid); // LOGGING
     }
 
     // Fork for each argument given
