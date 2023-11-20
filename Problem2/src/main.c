@@ -70,40 +70,27 @@ pid_t printnlines_fork(char *filename)
 
 int main(int argc, char **argv)
 {
-    // No minimum args
-    for (int argi=1; argi<argc; argi++) {
-        printnlines_fork(argv[argi]);
-        // printf("Forked %d\n", printnlines_fork(argv[argi])); // LOGGING
-    }
-
-    for (int i=0; i<argc-1; i++) {
-        int status;
-        pid_t pid = wait(&status);
-        if (status != EXIT_SUCCESS)  fprintf(stderr, "Process %d failed with status %d\n", pid, status);
-        // else printf("Process %d succeeded\n", pid); // LOGGING
-    }
-
     // Fork for each argument given
-    // int children = 0;
-    // int argi = 1;
-    // while (1) {
-    //     // Forking: if there are more args and can create children
-    //     if (argi<argc && children < MAX_CHILDREN) {
-    //         // printf("Forked %d (%d running)\n", printnlines_fork(argv[argi++]), children++); // LOGGING
-    //         pid_t pid = printnlines_fork(argv[argi++]);
-    //         if (pid > 0) children++;
-    //     } // We skip waiting here to spawn all children ASAP
-    //     // Waiting: if no child was created this loop, and there are children
-    //     else if (children > 0) {
-    //         int status;
-    //         pid_t pid = wait(&status);
-    //         if (status != EXIT_SUCCESS)  fprintf(stderr, "Process %d failed with status %d\n", pid, status);
-    //         // else printf("Process %d succeeded (%d running)\n", pid, children--); // LOGGING
-    //         children--;
-    //     }
-    //     // When there are no more children, exit
-    //     else  break; 
-    // }
+    int children = 0;
+    int argi = 1;
+    while (1) {
+        // Forking: if there are more args and can create children
+        if (argi<argc && children < MAX_CHILDREN) {
+            // printf("Forked %d (%d running)\n", printnlines_fork(argv[argi++]), ++children); // LOGGING
+            pid_t pid = printnlines_fork(argv[argi++]);
+            if (pid > 0) children++;
+        } // We skip waiting here to spawn all children ASAP
+        // Waiting: if no child was created this loop, and there are children
+        else if (children > 0) {
+            int status;
+            pid_t pid = wait(&status);
+            if (status != EXIT_SUCCESS)  fprintf(stderr, "Process %d failed with status %d\n", pid, status);
+            // else printf("Process %d succeeded (%d running)\n", pid, --children); // LOGGING
+            children--;
+        }
+        // When there are no more children, exit
+        else  break; 
+    }
 
     exit(EXIT_SUCCESS);
 }
