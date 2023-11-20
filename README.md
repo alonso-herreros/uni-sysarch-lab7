@@ -29,7 +29,7 @@ clear
 | Problem | Status | Comment
 | --- | :---: | --- |
 | [Problem 1][i1] | Done | Args `./test/test.txt` `./test/test2.txt` `./test/elQuijote.txt` `./test/test3.txt` |
-| [Problem 2][i2] | - | |
+| [Problem 2][i2] | Done | Args `./test/test.txt` `./test/test2.txt` `./test/elQuijote.txt` `./test/test3.txt` |
 
 [i1]: https://github.com/alonso-herreros/uni-sysarch-lab7/issues/1
 [i2]: https://github.com/alonso-herreros/uni-sysarch-lab7/issues/2
